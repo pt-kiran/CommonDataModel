@@ -215,7 +215,7 @@ Standardized clinical data
 --HINT DISTRIBUTE_ON_KEY(person_id)
 CREATE TABLE person
 (
-  person_id						      BIGINT	  	NOT NULL , 
+  person_id						      VARCHAR(64)	  	NOT NULL , 
   gender_concept_id				      INTEGER	  	NOT NULL ,
   year_of_birth					      INTEGER	  	NOT NULL ,
   month_of_birth				      INTEGER	  	NULL,
@@ -347,7 +347,7 @@ CREATE TABLE procedure_occurrence
 CREATE TABLE drug_exposure
 (
   drug_exposure_id				BIGINT			NOT NULL ,
-  person_id						BIGINT			NOT NULL ,
+  person_id						VARCHAR(64)			NOT NULL ,
   drug_concept_id				INTEGER			NOT NULL ,
   drug_exposure_start_date		DATE			NULL ,
   drug_exposure_start_datetime	DATETIME2		NOT NULL ,
@@ -359,16 +359,19 @@ CREATE TABLE drug_exposure
   refills						INTEGER		  	NULL ,
   quantity						FLOAT			NULL ,
   days_supply					INTEGER		  	NULL ,
+  frequency           VARCHAR(255)  NULL ,
+  daily_admin         FLOAT       NULL ,
+  dose_amount         FLOAT       NULL ,
   sig							VARCHAR(MAX)	NULL ,
   route_concept_id				INTEGER			NOT NULL ,
   lot_number					VARCHAR(50)	  	NULL ,
-  provider_id					BIGINT			NULL ,
+  provider_id					VARCHAR(64)			NULL ,
   visit_occurrence_id			BIGINT			NULL ,
   visit_detail_id               BIGINT       	NULL ,
   drug_source_value				VARCHAR(50)	  	NULL ,
   drug_source_concept_id		INTEGER			NOT NULL ,
   route_source_value			VARCHAR(50)		NULL ,
-  dose_unit_source_value		VARCHAR(50)	  	NULL
+  dose_unit_source_value		VARCHAR(255)	  	NULL
 )
 ;
 
@@ -399,7 +402,7 @@ CREATE TABLE device_exposure
 CREATE TABLE condition_occurrence
 (
   condition_occurrence_id		BIGINT			NOT NULL ,
-  person_id						BIGINT			NOT NULL ,
+  person_id						VARCHAR(64)			NOT NULL ,
   condition_concept_id			INTEGER			NOT NULL ,
   condition_start_date			DATE			NULL ,
   condition_start_datetime		DATETIME2		NOT NULL ,
@@ -408,12 +411,14 @@ CREATE TABLE condition_occurrence
   condition_type_concept_id		INTEGER			NOT NULL ,
   condition_status_concept_id	INTEGER			NOT NULL ,
   stop_reason					VARCHAR(20)		NULL ,
-  provider_id					BIGINT			NULL ,
+  provider_id					VARCHAR(64)			NULL ,
   visit_occurrence_id			BIGINT			NULL ,
   visit_detail_id               BIGINT     		NULL ,
   condition_source_value		VARCHAR(50)		NULL ,
   condition_source_concept_id	INTEGER			NOT NULL ,
-  condition_status_source_value	VARCHAR(50)		NULL
+  condition_status_source_value	VARCHAR(50)		NULL ,
+  last_modified         DATE    NULL ,
+  created_at            DATE    NULL
 )
 ;
 
@@ -422,23 +427,24 @@ CREATE TABLE condition_occurrence
 CREATE TABLE measurement
 (
   measurement_id				BIGINT			NOT NULL ,
-  person_id						BIGINT			NOT NULL ,
-  measurement_concept_id		INTEGER			NOT NULL ,
+  person_id						VARCHAR(64)			NOT NULL ,
+  measurement_concept_id		INTEGER			NULL ,
   measurement_date				DATE			NULL ,
-  measurement_datetime			DATETIME2		NOT NULL ,
+  observed_at             DATE      NULL ,
+  measurement_datetime			DATETIME2		NULL ,
   measurement_time              VARCHAR(10) 	NULL,
-  measurement_type_concept_id	INTEGER			NOT NULL ,
+  measurement_type_concept_id	INTEGER			NULL ,
   operator_concept_id			INTEGER			NULL ,
   value_as_number				FLOAT			NULL ,
   value_as_concept_id			INTEGER			NULL ,
   unit_concept_id				INTEGER			NULL ,
   range_low					    FLOAT			NULL ,
   range_high					FLOAT			NULL ,
-  provider_id					BIGINT			NULL ,
+  provider_id					VARCHAR(64)			NULL ,
   visit_occurrence_id			BIGINT			NULL ,
   visit_detail_id               BIGINT	     	NULL ,
   measurement_source_value		VARCHAR(50)		NULL ,
-  measurement_source_concept_id	INTEGER			NOT NULL ,
+  measurement_source_concept_id	INTEGER			NULL ,
   unit_source_value				VARCHAR(50)		NULL ,
   value_source_value			VARCHAR(50)		NULL
 )

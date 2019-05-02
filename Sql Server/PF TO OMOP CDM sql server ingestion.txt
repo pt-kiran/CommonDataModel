@@ -1,0 +1,6 @@
+-- laborder to measurement
+INSERT INTO measurement (measurement_id, person_id, provider_id, measurement_source_value, measurement_date, observed_at, value_as_number, value_as_concept_id, unit_source_value)
+SELECT laborder_id, patient_id, provider_id, loinc_num, created_at, observed_at, obs_quan, obs_qual, unit
+FROM laborder;
+
+-- prescriptions to drug_exposure
