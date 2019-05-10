@@ -428,12 +428,12 @@ CREATE TABLE measurement
 (
   measurement_id				BIGINT			NOT NULL ,
   person_id						VARCHAR(64)			NOT NULL ,
-  measurement_concept_id		INTEGER			NULL ,
+  measurement_concept_id		INTEGER			NOT NULL ,
   measurement_date				DATE			NULL ,
   observed_at             DATE      NULL ,
   measurement_datetime			DATETIME2		NULL ,
   measurement_time              VARCHAR(10) 	NULL,
-  measurement_type_concept_id	INTEGER			NULL ,
+  measurement_type_concept_id	INTEGER			NOT NULL ,
   operator_concept_id			INTEGER			NULL ,
   value_as_number				FLOAT			NULL ,
   value_as_concept_id			INTEGER			NULL ,
@@ -444,7 +444,7 @@ CREATE TABLE measurement
   visit_occurrence_id			BIGINT			NULL ,
   visit_detail_id               BIGINT	     	NULL ,
   measurement_source_value		VARCHAR(50)		NULL ,
-  measurement_source_concept_id	INTEGER			NULL ,
+  measurement_source_concept_id	INTEGER			NOT NULL ,
   unit_source_value				VARCHAR(50)		NULL ,
   value_source_value			VARCHAR(50)		NULL
 )
