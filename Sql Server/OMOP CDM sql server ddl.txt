@@ -226,7 +226,7 @@ CREATE TABLE person
   death_datetime					  DATETIME2		NULL,
   race_concept_id				      INTEGER		NOT NULL,
   ethnicity_concept_id			  	  INTEGER	  	NOT NULL,
-  location_id					      BIGINT		NULL,
+  location_id					      VARCHAR(255)		NULL,
   provider_id					      BIGINT		NULL,
   care_site_id					      BIGINT		NULL,
   person_source_value			      VARCHAR(50)   NULL,
@@ -583,11 +583,11 @@ Standardized health system data
 --HINT DISTRIBUTE ON RANDOM
 CREATE TABLE location
 (
-  location_id			BIGINT			NOT NULL ,
+  location_id			VARCHAR(255)			NOT NULL ,
   address_1				VARCHAR(50)		NULL ,
   address_2				VARCHAR(50)		NULL ,
   city					VARCHAR(50)		NULL ,
-  state					VARCHAR(2)		NULL ,
+  state					VARCHAR(50)		NULL ,
   zip					VARCHAR(9)		NULL ,
   county				VARCHAR(20)		NULL ,
   country				VARCHAR(100)	NULL ,
