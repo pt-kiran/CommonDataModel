@@ -148,6 +148,8 @@ CREATE TABLE source_to_concept_map (
 --HINT DISTRIBUTE ON RANDOM
 CREATE TABLE drug_strength (
   drug_concept_id				INTEGER		  NOT NULL,
+  drug_source_value        VARCHAR(50)    NULL, 
+  drug_source_concept_id      INTEGER       NOT NULL,
   ingredient_concept_id			INTEGER		  NOT NULL,
   amount_value					FLOAT		  NULL,
   amount_unit_concept_id		INTEGER		  NULL,
